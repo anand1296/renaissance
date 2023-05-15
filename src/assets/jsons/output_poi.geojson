@@ -1,0 +1,72 @@
+[
+    {
+        "type": "Feature",
+        "properties": {
+            "lat": 40.624,
+            "lon": -73.965
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -73.96451797834753,
+                40.624493771128776
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "lat": 40.651,
+            "lon": -73.904
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -73.904224097371198,
+                40.651257153357783
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "lat": 40.625,
+            "lon": -73.938
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -73.937758384370227,
+                40.625329148516521
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "lat": 40.682,
+            "lon": -73.957
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -73.956882231507905,
+                40.68218971872821
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "lat": 40.635,
+            "lon": -73.993
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -73.992709246553915,
+                40.634994407112835
+            ]
+        }
+    }
+]

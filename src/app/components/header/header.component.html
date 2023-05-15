@@ -1,0 +1,45 @@
+<div class="header-wrapper row w-100">
+    <div class="logo col-3">
+        <div class="logo-wrapper">
+            <img [src]="productLogo" alt="renaissance-logo">
+        </div>
+        <h2 class="px-2">
+            <a [routerLink]="['home']">
+                ren<span class="ai">AI</span>ssance
+            </a>
+        </h2>
+    </div>
+    <div class="content offset-1 col-8">
+        <div class="search-bar-wrapper card">
+            <span class="p-input-icon-left d-flex"
+                [pTooltip]="botMessage?.msg?.length < 200 ? botMessage?.msg : 'Search your query'"
+                tooltipPosition="bottom" [showDelay]="500">
+                <i class="pi pi-search"></i>
+                <input class="search-box w-100" type="search" pInputText [(ngModel)]="searchQuery"
+                    placeholder="{{ botMessage?.msg?.length ? botMessage?.msg : 'Search your query'}}"
+                    autofocus (keyup.enter)="sendQuery()" />
+                <span class="action-icons d-flex align-items-center">
+                    <i *ngIf="!isUserSpeaking" class="pi pi-microphone" (click)="startRecording()"
+                        [pTooltip]="'Start recording'" tooltipPosition="bottom" [showDelay]="500"></i>
+                    <i *ngIf="isUserSpeaking" class="pi pi-stop-circle" (click)="stopRecording()"
+                        [pTooltip]="'Stop recording'" tooltipPosition="bottom" [showDelay]="500"></i>
+                    <ng-container *ngIf="searchQuery.length">
+                        <i class="pi pi-times px-2" (click)="searchQuery=''"></i>
+                        <i class="pi pi-send px-4" (click)="sendQuery()"></i>
+                    </ng-container>
+                </span>
+            </span>
+            <div *ngIf="botMessage?.options && !showDefaultPlaceholder" class="bot-options">
+                <div *ngIf="botMessage?.options?.buttons?.length" class="buttons row mx-0">
+                    <ng-container
+                        *ngFor="let buttonIem of botMessage?.options?.buttons; let btnIndex=index; let lastBtn=last">
+                        <p-button *ngIf="!buttonIem.disabled" class="ps-0 py-1" [label]="buttonIem.text"
+                            styleClass="p-button-rounded p-button-outlined p-button-{{buttonIem.styleClass}}"
+                            (click)="onClickButtonOption(buttonIem)" [pTooltip]="buttonIem.text"
+                            tooltipPosition="bottom" [showDelay]="1000"></p-button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

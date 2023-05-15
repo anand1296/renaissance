@@ -1,0 +1,50 @@
+<div class="map-main">
+    <div id="map" class="map-container"> </div>
+    <!-- <div class="map-key">
+        <div class="key-item item-1">
+            <span class="color" id="key1"></span>
+            <label for="key1">Trade Area</label>
+        </div>
+        <div class="key-item item-2">
+            <span class="color" id="key2"></span>
+            <label for="key2">Area of Interest</label>
+        </div>
+    </div> -->
+    <div class="map-options">
+        <div class="map-styles">
+            <label><small>{{' - Select map style - '}}</small></label>
+            <ng-select [items]="mapStyles" bindLabel="name" bindValue="name" [(ngModel)]="selectedMapStyle"
+                [clearable]="false" (change)="changeMapStyle($event)">
+            </ng-select>
+        </div>
+    </div>
+
+    <div class="side-panel">
+        <div class="chatbot-main"  [ngClass]="{ 'open': openChatBot }">
+            <div class="chatbot-wrapper">
+                <app-chatbot (closeChatbot_)="closeChatbot($event)"></app-chatbot>
+            </div>
+            <div class="chatbot-btn" *ngIf="!showInsights">
+                <i class="pi pi-comment" (click)="openChatBot=!openChatBot"
+                    pTooltip="{{ openChatBot ? 'Hide Chatbot' : 'Open Chatbot' }}" tooltipPosition="bottom"
+                    [showDelay]="500">
+                </i>
+            </div>
+        </div>
+
+        <div class="insights-main" [ngClass]="{ 'open': showInsights }">
+            <div class="insights-wrapper" [ngClass]="{'invert-color': invertColor }">
+                <ng-container *ngFor="let insightItem of insightsList">
+                    <app-insights [chartHeader]="insightItem.header" [chartData]="insightItem.chartData">
+                    </app-insights>
+                </ng-container>
+            </div>
+            <div class="show-insights-btn" *ngIf="!openChatBot && insightsList.length">
+                <i class="pi pi-chart-bar" (click)="showInsights=!showInsights"
+                    pTooltip="{{ showInsights ? 'Hide Insights' : 'Show Insights' }}" tooltipPosition="bottom"
+                    [showDelay]="500">
+                </i>
+            </div>
+        </div>
+    </div>
+</div>

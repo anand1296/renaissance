@@ -1,0 +1,183 @@
+.map-main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .map-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .map-key {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+        position: absolute;
+        bottom: 0.5rem;
+        right: 3rem;
+        padding: 0rem 0.8rem;
+        // width: 200px;
+        .key-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            .color {
+                width: 20px;
+                height: 20px;
+            }
+            label {
+                padding: 0 1rem;
+                font-size: 14px;
+                color: #fff;
+                font-style: italic;
+                text-align: left;
+                width: 100%;
+            }
+            &.item-1 .color {
+                background-color: #fafe01;
+            }
+            &.item-2 .color {
+                background-color: #5dead4;
+            }
+        }
+    }
+    .map-options {
+        position: absolute;
+        top: 0;
+        right: 0;
+        // left: 3rem;
+        padding: 0.4rem 0.8rem;
+        .map-styles {
+            label {
+                font-size: 0.75rem;
+                text-align: start;
+            }
+            .ng-select {
+                width: 150px;
+            }
+        }
+    }
+
+    .side-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: auto;
+        .insights-main, .chatbot-main {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            width: auto;
+            &.open {
+                .insights-wrapper, .chatbot-wrapper {
+                    width: 30vw;
+                    animation: slide-open 500ms;
+                }
+                .show-insights-btn {
+                    left: 0;
+                }
+                .chatbot-btn, .show-insights-btn {
+                    top: 0;
+                }
+                .chatbot-btn {
+                    left: 1.4rem;
+                }
+            }
+            .insights-wrapper {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 0vw;//30vw;
+                // padding: 1rem 2rem;
+                height: 100%;
+                overflow: scroll;
+                background-color: rgba(0, 0, 0, 0.5);
+                transition: 0.5s all ease-in-out;
+                &.invert-color {
+                    filter: invert(1);
+                }
+            }
+            .show-insights-btn, .chatbot-btn {
+                position: relative;
+                top: 0;
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                height: fit-content;
+                .pi-comment, .pi-chart-bar {
+                    font-size: 2rem;
+                    cursor: pointer;
+                    padding: 0.4rem;
+                    border-radius: 6px;
+                    color: var(--text-color);
+                    background-image: var(--theme-primary-bg-color-gradient);
+                    &:hover {
+                        background-image: none;
+                        border: 3px solid var(--theme-primary-color-light);
+                        color: var(--theme-primary-color-light);
+                    }
+                }
+            }
+            .chatbot-btn {
+                top: 2rem;
+            }
+            .show-insights-btn {
+                left: -4.8rem;
+                top: -2rem;
+            }
+        }
+        .chatbot-main {
+            .chatbot-wrapper {
+                position: relative;
+                left: 1.4rem;
+                // left: 0;
+                top: 0;
+                width: 0vw;//30vw;
+                // padding: 1rem 2rem;
+                height: 90%;
+                background-color: rgba(0, 0, 0, 0.5);
+                transition: 0.5s all ease-in-out;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+::ng-deep .map-container#map {
+    .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+        display: none;
+    }
+    .mapboxgl-ctrl-top-right {
+        display: none;
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/%3E%3C/svg%3E");
+    }
+    .mapboxgl-ctrl button .mapboxgl-ctrl-icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+    .mapboxgl-ctrl-bottom-left {
+        display: none;
+    }
+}
+
+//animation
+@keyframes slide-open {
+    0% {
+        width: 0vw;
+    }
+    100% {
+        width: 30vw;
+    }
+}

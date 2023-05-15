@@ -1,0 +1,59 @@
+<div class="chatbot-container">
+    <div class="chatbot-header">
+        <div class="logo">
+            <img [src]="productLogo" alt="renaissance-logo">
+        </div>
+        <div class="options">
+            <i class="pi pi-times px-2" (click)="closeChatbot()"></i>
+        </div>
+    </div>
+    <div class="chat-wrapper" #chatWrapper>
+        <div class="message-wrapper row mx-0" *ngFor="let msgItem of messages; let msgIndex=index">
+            <div class="message" [ngClass]="msgItem.type">
+                <div *ngIf="msgItem.type === 'loader'; else no_loader" class="bot-typing">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ng-template #no_loader>
+                    <div class="text" [innerHtml]="msgItem.msg"></div>
+                    <span class="timestamp">{{msgItem.timestamp}}</span>
+                </ng-template>
+            </div>
+            <div *ngIf="msgItem.options" class="bot-options">
+                <div *ngIf="msgItem.options.buttons?.length" class="buttons row mx-0">
+                    <p-button *ngFor="let buttonIem of msgItem.options.buttons; let btnIndex=index; let lastBtn=last"
+                        class="ps-0 py-1" [label]="buttonIem.text" [disabled]="buttonIem.disabled"
+                        styleClass="p-button-rounded p-button-{{buttonIem.styleClass}}"
+                        (click)="onClickButtonOption(buttonIem, msgIndex)"
+                        [ngClass]="{'col-6': !lastBtn, 'col-12': lastBtn }" [pTooltip]="buttonIem.text"
+                        tooltipPosition="bottom" [showDelay]="1000"></p-button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="botMsgLoader" class="bot-msg-loader">
+            <div class="bot-typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="chat-input card">
+        <span class="p-input-icon-left d-flex">
+            <i class="pi pi-search"></i>
+            <input class="search-box w-100" type="search" pInputText [(ngModel)]="searchQuery"
+                placeholder="Search your query" autofocus (keyup.enter)="sendQuery()" />
+            <span class="action-icons d-flex align-items-center">
+                <i *ngIf="!isUserSpeaking" class="pi pi-microphone" (click)="startRecording()"
+                    [pTooltip]="'Start recording'" tooltipPosition="bottom" [showDelay]="500"></i>
+                <i *ngIf="isUserSpeaking" class="pi pi-stop-circle" (click)="stopRecording()"
+                    [pTooltip]="'Stop recording'" tooltipPosition="bottom" [showDelay]="500"></i>
+                <ng-container *ngIf="searchQuery.length">
+                    <i class="pi pi-times px-2" (click)="searchQuery=''"></i>
+                    <i class="pi pi-send px-4" (click)="sendQuery()"></i>
+                </ng-container>
+            </span>
+        </span>
+    </div>
+</div>

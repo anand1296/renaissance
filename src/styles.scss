@@ -1,0 +1,30 @@
+/* Importing Bootstrap SCSS file. */
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@import "primeicons/primeicons.css";
+@import "primeng/resources/primeng.min.css";
+// @import "primeng/resources/themes/luna-green/theme.css";
+@import "primeng/resources/themes/lara-dark-teal/theme.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+:root {
+  --theme-secondary-text-color: cornflowerblue;
+  --theme-primary-color-light: #9C60F4;
+  --theme-primary-color-dark: #654BD0;
+  --theme-primary-bg-color-gradient: linear-gradient(to right, #9C60F4, #654BD0); 
+  --theme-tertiary-color: #E8E9F6;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--primary-color);
+}
+
+::ng-deep .p-tooltip {
+  .p-tooltip-text {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 11px !important;
+  }
+}

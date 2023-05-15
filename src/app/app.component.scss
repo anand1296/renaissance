@@ -1,0 +1,36 @@
+
+$headerHeight: 4rem;
+$footerHeight: 2rem;
+
+@mixin flex-center-v {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-center-v {
+    display: flex;
+    align-items: center;
+}
+
+header, footer {
+    // background-color: var(--primary-color);
+    background-image: var(--theme-primary-bg-color-gradient);
+    color: var(--text-color);
+    @include flex-center-v();
+}
+
+header {
+    height: $headerHeight;
+}
+
+footer {
+    height: $footerHeight;
+    p {
+        font-size: 12px;
+        margin: 0;
+    }
+}
+
+.router-output {
+    height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+}
